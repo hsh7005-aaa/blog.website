@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}홈 - My Blog{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>안녕하세요 👋</h1>
+    <p>생각을 기록하고 나누는 공간입니다.</p>
+</section>
+
+<section class="posts">
+    <h2>최근 포스트</h2>
+    <div class="post-grid">
+        {% for post in posts %}
+        <article class="post-card">
+            <div class="post-meta">
+                <span class="date">{{ post.date }}</span>
+                <div class="tags">
+                    {% for tag in post.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <h3><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+            <p>{{ post.summary }}</p>
+            <a href="/post/{{ post.id }}" class="read-more">읽기 →</a>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="about" id="about">
+    <h2>소개</h2>
+    <p>이 블로그는 Flask와 Vercel로 만들어졌습니다.</p>
+</section>
+{% endblock %}
